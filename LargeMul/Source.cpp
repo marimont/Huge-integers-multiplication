@@ -41,20 +41,7 @@ int _tmain(DWORD argc, LPTSTR argv[]) {
 	}
 
 
-	/*I copy the first number directly inside the res array so that I don't have to care about the first multiplication*/
-	if (ReadFile(hIn, &buffer, sizeof(buffer), &nIn, NULL) && nIn) {
-		_ftprintf(stdout, _T("Input: %d. "), buffer);
-		res_size = parseInput(buffer, res);
-	}else {
-		_ftprintf(stderr, _T("Can't read: no input or error in reading\r\n")); return 3;
-	}
-	
-	_ftprintf(stdout, _T("Overall product: "));
-	for (i = res_size; i > 0; i--)
-		_ftprintf(stdout, _T("%d"), res[i-1]);
-	_ftprintf(stdout, _T("\r\n"));
-	
-	/*I start from the second integer*/
+	res[0] = 1; res_size = 1;
 	while (ReadFile(hIn, &buffer, sizeof(buffer), &nIn, NULL) && nIn > 0) {
 		_ftprintf(stdout, _T("Input: %d. "), buffer);
 		res_size = multiply(buffer, res, res_size);
