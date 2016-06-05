@@ -2,15 +2,15 @@
 mathematical operations on a set of input data passed through a binary file to the main function. One of the threads was supposed
 to compute, for each input number, the overall product of the numbers received by that time.
 
-I realized that, by simply passing a set of numbers which progressively grow from 1 to something more than 20  (even 21) I was 
+I realized that, by simply passing a set of numbers which progressively grew from 1 to something more than 20  (even 21) I was 
 not able to represent the result of the multiplication even on a LONGLONG data type (which is the biggest available).
 
-So, I've decided to implement a digit by digit multiplication which basically simply applies the multiplication algorithm and saves
-each digit in a cell of an array. The result is then printed out, by scanning the array.
+So, I've decided to implement a digit by digit multiplication which basically simply applies the multiplication algorithm and 
+saves each digit in a cell of an array. The result is then printed out, by scanning the array.
 
 The program is not optimized, since I wrote it in a kind of hurry and there could be some mistakes. Moreover, it is implemented
-in a way which is some how functional to my initial assignment. But, the important thing is the algorithm I've used, which, I think
-could be interesting.
+in a way which is somehow functional to my initial assignment. But, the important thing is the algorithm I've used, which, 
+I think could be interesting.
 */
 #define UNICODE
 #define _UNICODE
@@ -41,7 +41,7 @@ int _tmain(DWORD argc, LPTSTR argv[]) {
 	}
 
 
-	/*I copy the first into directly inside the res array so that I don't have to care about the first multiplication*/
+	/*I copy the first number directly inside the res array so that I don't have to care about the first multiplication*/
 	if (ReadFile(hIn, &buffer, sizeof(buffer), &nIn, NULL) && nIn) {
 		_ftprintf(stdout, _T("Input: %d. "), buffer);
 		res_size = parseInput(buffer, res);
@@ -82,7 +82,7 @@ DWORD parseInput(DWORD n, DWORD *input){
 
 DWORD multiply(DWORD n, DWORD *res, DWORD res_size) {
 	DWORD prod, new_size, carry, carry1, i, j, digitsN, input[MAX], tmp[MAX];		//the input num is gonna be parsed so i can multiply each digit by each digit
-													// of the overall product
+												// of the overall product
 
 	digitsN = parseInput(n, input);
 
@@ -92,7 +92,6 @@ DWORD multiply(DWORD n, DWORD *res, DWORD res_size) {
 
 	i = 0;
 	while (i < digitsN) {
-		//new_size++;
 		j = 0;
 		carry = (carry1 = 0);
 		/*I multiply each digit of the current tmp res by each digit of the  input value
